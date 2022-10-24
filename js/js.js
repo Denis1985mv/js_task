@@ -1,29 +1,30 @@
-// const stringToNumber = function (value) {
+const stringToNumber = function (value) {
    
-//   let result = value;
+  let result = value;
   
-//   if (result >= 0){
-//   result = Number(value);
-//   console.log(result);
-//   return result;
-//   }else{
-//   result = parseInt(value);
-//   console.log(result);
-//   return result;
-//   }
+  if (result >= 0){
+  result = Number(value);
+  console.log(result);
+  return result;
+  }else{
+  result = parseInt(value);
+  console.log(result);
+  return result;
+  }
 
-// };
+};
 
 
 //export default stringToNumber;
 
 
-function stringToNumber(params) {
+function stringToNumberTwo(params) {
   for (let index = 0; index < params.length; index++) {
     let element = params[index];
     console.log(element);
+    let result;
     if (element >= 0) {
-      let result = Number(element);
+      result = Number(element);
       console.log(result);
       document.write("Проверка 1 - ",result,"<br>");
       //return result;
@@ -52,4 +53,4 @@ let arry = [
   52.4578787,
   "356887",
 ];
-let resalt = stringToNumber(arry);
+let resalt = stringToNumberTwo(arry);
