@@ -1,56 +1,36 @@
-const stringToNumber = function (value) {
+
+function price(travelOne) {
+  //console.log(travelOne);
+  let result = `Рсчет с учетом программы лояльности: `;
+  return function (preson1) {
+   // console.log(travelOne);
+   // console.log(preson1);
    
-  let result = value;
-  
-  if (result >= 0){
-  result = Number(value);
-  console.log(result);
-  return result;
-  }else{
-  result = parseInt(value);
-  console.log(result);
-  return result;
-  }
-
-};
-
-
-//export default stringToNumber;
-
-
-function stringToNumberTwo(params) {
-  for (let index = 0; index < params.length; index++) {
-    let element = params[index];
-    console.log(element);
-    let result;
-    if (element >= 0) {
-      result = Number(element);
-      console.log(result);
-      document.write("Проверка 1 - ",result,"<br>");
-      //return result;
-    } else {
-      result = parseInt(element);
-      console.log(result);
-      document.write("Проверка 2 - ", result, "<br>");
-      // return result;
-    }
-  }
+    result = (`${result}, скидка  для постоянного клиента ${
+      travelOne.name
+    } составила ${preson1.personal} % -  , 
+         полная стоимость тура ${preson1.amount}, c учетом скидки ${
+      preson1.amount * (1 - Number(preson1.personal) / 100)
+    }`);
+    console.log(result);
+    return result;
+  };
 }
 
-let arry = [
-  43,
-  "42px",
-  52,
-  "",
-  "54dscds",
-  "",
-  "",
-  "42.42",
-  "sfsdfdfgdgf",
-  42.42,
-  "4544dfgdf",
-  "45dsfdsfsddsfa",
-  52.4578787,
-  "356887",
-];
-let resalt = stringToNumberTwo(arry);
+let preson1 = {
+  amount: "24500",
+  personal: "5",
+  regional: "2",
+  quantitative: "15",
+};
+
+let travelOne = {
+  name: "Турист 1",
+};
+
+let result = price(travelOne)(preson1);
+//let result = price.call(travelOne, preson1);
+//let result = price.call()(preson1);
+document.write(result);
+console.log(result);
+//let result = price()();
