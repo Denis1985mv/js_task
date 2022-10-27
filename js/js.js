@@ -1,6 +1,6 @@
 let calculator = {
   personal: function (value) {
-      let result = `Рсчет с учетом программы лояльности: `;
+      let result = `Расчет с учетом программы лояльности: `;
       return function (preson1) {        
         result = (`${result}, скидка  для постоянного клиента ${
           travel.One
@@ -13,7 +13,7 @@ let calculator = {
       };
     },
   regional: function (value) {
-      let result = `Рсчет с учетом программы лояльности: `;
+      let result = `Расчет с учетом программы лояльности: `;
       return function (preson1) {  
         result = (`${result}, скидка  для постоянного клиента ${
           travel.Two
@@ -67,17 +67,49 @@ let travel = {
   Fourth:"Турист 4",
 };
 
-let travelFirst = calculator.personal(travel.One)(preson1);
-let travelSecond = calculator.regional(travel.Two)(preson1);
-let travelThird = calculator.quantitative(travel.Three)(preson1);
-let travelFourth = calculator.full(travel.Fourth)(preson1);
+//   let travelFirst = calculator.personal(travel.One)(preson1);
+//   let travelSecond = calculator.regional(travel.Two)(preson1);
+//   let travelThird = calculator.quantitative(travel.Three)(preson1);
+//   let travelFourth = calculator.full(travel.Fourth)(preson1);
 
-console.log(travelFirst);
-console.log(travelSecond);
-console.log(travelThird);
-console.log(travelFourth);
+// console.log(travelFirst);
+// console.log(travelSecond);
+// console.log(travelThird);
+// console.log(travelFourth);
 
-document.write(travelFirst, "<br>");
-document.write(travelSecond, "<br>");
-document.write(travelThird, "<br>");
-document.write(travelFourth, "<br>");
+let travelValue = prompt( `Введите имя пользователя \n
+Cписок пользователей:\n
+${travel.One}\n
+${travel.Two}\n
+${travel.Three}\n
+${travel.Fourth}\n
+
+` );
+
+//travelValue = "1";
+switch(travelValue) {
+    case travelValue = travel.One :
+      travelValue = calculator.personal.call(travel.One)(preson1)
+      //calculator.personal(travel.One)(preson1)
+      console.log(travelValue);
+        break;
+    case travelValue = travel.Two :
+      travelValue = calculator.regional.call(travel.Two)(preson1)
+        break;
+    case travelValue = travel.Three :
+      travelValue = calculator.quantitative.call(travel.Three)(preson1)
+        break;
+    case travelValue = travel.Fourth :
+      travelValue = calculator.full.call(travel.Fourth)(preson1)
+        break;
+    default :
+        alert("Такого туриста нет!")};
+     
+        
+        console.log(travelValue);
+
+        
+document.write(travelValue, "<br>");
+// document.write(travelSecond, "<br>");
+// document.write(travelThird, "<br>");
+// document.write(travelFourth, "<br>");
