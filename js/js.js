@@ -77,12 +77,12 @@ let travel = {
 // console.log(travelThird);
 // console.log(travelFourth);
 
-let travelValue = prompt( `Введите имя пользователя \n
+let travelValue = prompt( `Введите имя туриста \n
 Cписок пользователей:\n
-${travel.One}\n
-${travel.Two}\n
-${travel.Three}\n
-${travel.Fourth}\n
+${travel.One}, скидка для клиента состоявляет ${preson1.personal} %.\n
+${travel.Two}, скидка для клиента состоявляет ${preson1.regional} %. \n
+${travel.Three}, скидка для клиента состоявляет ${preson1.quantitative} %.\n
+${travel.Fourth}, скидка для клиента состоявляет ${preson1.personal} %. \n
 
 ` );
 
@@ -104,12 +104,7 @@ switch(travelValue) {
         break;
     default :
         alert("Такого туриста нет!")};
-     
-        
-        console.log(travelValue);
 
-        
+        console.log(travelValue);
+      
 document.write(travelValue, "<br>");
-// document.write(travelSecond, "<br>");
-// document.write(travelThird, "<br>");
-// document.write(travelFourth, "<br>");
