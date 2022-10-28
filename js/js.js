@@ -67,30 +67,17 @@ let travel = {
   Fourth:"Турист 4",
 };
 
-//   let travelFirst = calculator.personal(travel.One)(preson1);
-//   let travelSecond = calculator.regional(travel.Two)(preson1);
-//   let travelThird = calculator.quantitative(travel.Three)(preson1);
-//   let travelFourth = calculator.full(travel.Fourth)(preson1);
-
-// console.log(travelFirst);
-// console.log(travelSecond);
-// console.log(travelThird);
-// console.log(travelFourth);
-
 let travelValue = prompt( `Введите имя туриста \n
 Cписок пользователей:\n
-${travel.One}, скидка для клиента состоявляет ${preson1.personal} %.\n
-${travel.Two}, скидка для клиента состоявляет ${preson1.regional} %. \n
-${travel.Three}, скидка для клиента состоявляет ${preson1.quantitative} %.\n
-${travel.Fourth}, скидка для клиента состоявляет ${preson1.personal} %. \n
-
+${travel.One}, скидка для туриста состоявляет ${preson1.personal} %.\n
+${travel.Two}, скидка для туриста состоявляет ${preson1.regional} %. \n
+${travel.Three}, скидка для туриста состоявляет ${preson1.quantitative} %.\n
+${travel.Fourth}, скидка для туриста состоявляет ${preson1.personal} %. \n
 ` );
 
-//travelValue = "1";
 switch(travelValue) {
     case travelValue = travel.One :
       travelValue = calculator.personal.call(travel.One)(preson1)
-      //calculator.personal(travel.One)(preson1)
       console.log(travelValue);
         break;
     case travelValue = travel.Two :
@@ -104,7 +91,5 @@ switch(travelValue) {
         break;
     default :
         alert("Такого туриста нет!")};
-
-        console.log(travelValue);
-      
+     
 document.write(travelValue, "<br>");
