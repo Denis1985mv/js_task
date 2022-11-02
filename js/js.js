@@ -518,14 +518,17 @@ let contry = prompt(`Доступные регионы:
 "Hungary" 
 ${price['greece']}
 Введите страну: `, `Poland`);
-let regionsPersons = prompt(`
+let regionsPersons;
+
+if(contry === "Poland" || contry === "Greece" || contry === "Hungary"){
+
+if (contry === "Poland") {
+  regionsPersons = prompt(`
 База клиентов:
 vasya
 alex
-sveta
 Введите имя клиента`, `vasya`);
 
-if (contry === "Poland") {
   switch (regionsPersons) {
     case (regionsPersons = "vasya"):
       regionsPersons = calculator.vasya.call(regionsPoland.discounts)(
@@ -542,6 +545,11 @@ if (contry === "Poland") {
       alert("Такого туриста нет!");
   }
 } else if(contry === "Greece"){
+  regionsPersons = prompt(`
+  База клиентов:
+  vasya
+  sveta
+  Введите имя клиента`, `vasya`);
   switch (regionsPersons) {
     case (regionsPersons = "alex"):
       regionsPersons = calculator.alexGreece.call(
@@ -559,6 +567,12 @@ if (contry === "Poland") {
   }
 }
 else if (contry === "Hungary") {
+  regionsPersons = prompt(`
+  База клиентов:
+  vasya
+  alex
+  sveta
+  Введите имя клиента`, `vasya`);
   switch (regionsPersons) {
     case (regionsPersons = "vasya"):
       regionsPersons = calculator.vasyaHungary.call(
@@ -578,6 +592,10 @@ else if (contry === "Hungary") {
     default:
       alert("Такого клиента нет!");
   }
+}
+}else{
+alert("Такой страны нет!");
+  
 }
 
 document.write(regionsPersons, "<br>");
