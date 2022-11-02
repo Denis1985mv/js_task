@@ -512,10 +512,18 @@ let calculator = {
   
 };
 
-let contry = prompt(`Доступные регионы \n
-${price.regions}
-Введите страну: `);
-let regionsPersons = prompt(`Введите имя клиента`);
+let contry = prompt(`Доступные регионы:
+"Poland"
+"Greece" 
+"Hungary" 
+${price['greece']}
+Введите страну: `, `Poland`);
+let regionsPersons = prompt(`
+База клиентов:
+vasya
+alex
+sveta
+Введите имя клиента`, `vasya`);
 
 if (contry === "Poland") {
   switch (regionsPersons) {
@@ -533,7 +541,7 @@ if (contry === "Poland") {
     default:
       alert("Такого туриста нет!");
   }
-} else if(contry === "greece"){
+} else if(contry === "Greece"){
   switch (regionsPersons) {
     case (regionsPersons = "alex"):
       regionsPersons = calculator.alexGreece.call(
@@ -550,7 +558,7 @@ if (contry === "Poland") {
       alert("Такого туриста нет!");
   }
 }
-else if (contry === "hungary") {
+else if (contry === "Hungary") {
   switch (regionsPersons) {
     case (regionsPersons = "vasya"):
       regionsPersons = calculator.vasyaHungary.call(
