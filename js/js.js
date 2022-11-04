@@ -1,5 +1,4 @@
-
- let price = {
+let price = {
   discountsOnQuantity: {
     15000: "10",
     30000: "15",
@@ -110,492 +109,183 @@ let regionsPoland = getDetal(regions);
 let regionsGreece = getDetalGreece(regions);
 let regionsHungary = price.regions.hungary;
 
+let vasyaPoland = regions.poland.persons.vasya;
+let alexPoland = regions.poland.persons.alex;
+let alexGreece = regions.greece.persons.alex;
+let svetaGreece = regions.greece.persons.sveta;
+let vasyaHungary = regions.hungary.persons.vasya;
+let alexHungary = regions.hungary.persons.alex;
+let svetaHungary = regions.hungary.persons.sveta;
+console.log(vasyaPoland);
+
 let calculator = {
-  vasya: function () {
-    let discountsOn;
-    if (
-      regionsPoland.persons.vasya.amount > 15000 &&
-      regionsPoland.persons.vasya.amount < 30000
-    ) {
+  result: function () {
+    let discountsOn = 0;
+    let discountsOnValue;
+    console.log(valuePersons);
+    console.log(valuePersons.amount);
+
+    if (valuePersons.amount > 15000 && valuePersons.amount < 30000) {
       discountsOn = 0.9;
-    } else if (
-      regionsPoland.persons.vasya.amount > 30000 &&
-      regionsPoland.persons.vasya.amount < 50000
-    ) {
+    } else if (valuePersons.amount > 30000 && valuePersons.amount < 50000) {
       discountsOn = 0.85;
-    } else if (regionsPoland.persons.vasya.amount > 50000) {
+    } else if (valuePersons.amount > 50000) {
       discountsOn = 0.81;
     }
-    let discountsOnValue =
-      regionsPoland.persons.vasya.amount * discountsOn;
+
+    if (discountsOn > 0) {
+      discountsOnValue = valuePersons.amount * discountsOn;
+      console.log(discountsOnValue, "zdes");
+    } else if (discountsOn === 0) {
+      discountsOnValue = ` Колличественной скидки нету!`;
+    }
+
     return function () {
       let result =
-        regionsPoland.persons.vasya.amount *
-        (1 - Number(regionsPoland.persons.vasya.personal) / 100);
+        valuePersons.amount * (1 - Number(valuePersons.personal) / 100);
       console.log(result);
       let resultRegianal =
-        regionsPoland.persons.vasya.amount *
-        (1 - Number(regionsPoland.discounts) / 100);
+        valuePersons.amount * (1 - Number(regions.discounts) / 100);
       let resultFull =
-        regionsPoland.persons.vasya.amount *
-        (1 - Number(regionsPoland.discounts) / 100) *
-        (1 - Number(regionsPoland.persons.vasya.personal) / 100);
+        valuePersons.amount *
+        (1 - Number(regions.discounts) / 100) *
+        (1 - Number(valuePersons.personal) / 100);
       console.log(resultFull);
       let resultFullMax =
-        regionsPoland.persons.vasya.amount *
-        (1 - Number(regionsPoland.discounts) / 100) *
-        (1 - Number(regionsHungary.persons.vasya.personal) / 100) *
+        valuePersons.amount *
+        (1 - Number(regions.discounts) / 100) *
+        (1 - Number(valuePersons.personal) / 100) *
         discountsOn;
 
+      if (resultFullMax === 0) {
+        resultFullMax = resultFull;
+      }
+
       return function () {
-        result = `Полная стоисость: ${
-          regionsPoland.persons.vasya.amount
-        }${"<br>"} 
-        Региональная скидка: ${regionsPoland.discounts} % -  ,
-        стоимость с учетом региональной скидки: ${resultRegianal},${"<br>"} 
-        Cкидка  персоанальная: ${regionsPoland.persons.vasya.personal} 
-        стоимость с учетом персональной скидки: ${result}${"<br>"} 
-        С учетом Всех скидок (кроме количественной):  ${resultFull}${"<br>"} 
-        Cтоимость с учетом количественной скидки:${discountsOnValue}${"<br>"} 
-        Итоговая стоисмость:  ${resultFullMax}${"<br>"} 
-      `;
+        result = `Полная стоисость: ${valuePersons.amount}${"<br>"} 
+            Региональная скидка: ${regions.discounts} %   
+            стоимость с учетом региональной скидки: ${resultRegianal.toFixed(2)}${"<br>"} 
+            Cкидка  персоанальная: ${valuePersons.personal} %
+            стоимость с учетом персональной скидки: ${result}${"<br>"} 
+            С учетом Всех скидок (кроме количественной):  ${resultFull.toFixed(2)}${"<br>"} 
+            Cтоимость с учетом количественной скидки:${discountsOnValue}${"<br>"} 
+            Итоговая стоисмость:  ${resultFullMax.toFixed(2)}${"<br>"} 
+          `;
         console.log(result);
         return result;
       };
     };
   },
-  alex: function () {
-    let discountsOn;
-    if (
-      regionsPoland.persons.alex.amount > 15000 &&
-      regionsPoland.persons.alex.amount < 30000
-    ) {
-      discountsOn = 0.9;
-    } else if (
-      regionsPoland.persons.alex.amount > 30000 &&
-      regionsPoland.persons.alex.amount < 50000
-    ) {
-      discountsOn = 0.85;
-    } else if (regionsPoland.persons.alex.amount > 50000) {
-      discountsOn = 0.81;
-    }
-    let discountsOnValue =
-      regionsPoland.persons.alex.amount * discountsOn;
-    return function () {
-      let result =
-        regionsPoland.persons.alex.amount *
-        (1 - Number(regionsPoland.persons.alex.personal) / 100);
-      console.log(result);
-      let resultRegianal =
-        regionsPoland.persons.alex.amount *
-        (1 - Number(regionsPoland.discounts) / 100);
-      let resultFull =
-        regionsPoland.persons.alex.amount *
-        (1 - Number(regionsPoland.discounts) / 100) *
-        (1 - Number(regionsPoland.persons.alex.personal) / 100);
-      console.log(resultFull);
-      let resultFullMax =
-        regionsPoland.persons.alex.amount *
-        (1 - Number(regionsPoland.discounts) / 100) *
-        (1 - Number(regionsHungary.persons.alex.personal) / 100) *
-        discountsOn;
-
-      return function () {
-        result = `Полная стоисость: ${
-          regionsPoland.persons.alex.amount
-        }${"<br>"} 
-        Региональная скидка: ${regionsPoland.discounts} % -  ,
-        стоимость с учетом региональной скидки: ${resultRegianal},${"<br>"} 
-        Cкидка  персоанальная: ${regionsPoland.persons.alex.personal} 
-        стоимость с учетом персональной скидки: ${result}${"<br>"} 
-        С учетом Всех скидок (кроме количественной):  ${resultFull}${"<br>"} 
-        Cтоимость с учетом количественной скидки:${discountsOnValue}${"<br>"} 
-        Итоговая стоисмость:  ${resultFullMax}${"<br>"} 
-      `;
-        console.log(result);
-        return result;
-      };
-    };
-  },
-
-  alexGreece: function () {
-    let discountsOn;
-    if (
-      regionsGreece.persons.alex.amount > 15000 &&
-      regionsGreece.persons.alex.amount < 30000
-    ) {
-      discountsOn = 0.9;
-    } else if (
-      regionsGreece.persons.alex.amount > 30000 &&
-      regionsGreece.persons.alex.amount < 50000
-    ) {
-      discountsOn = 0.85;
-    } else if (regionsGreece.persons.alex.amount > 50000) {
-      discountsOn = 0.81;
-    }
-    let discountsOnValue =
-      regionsGreece.persons.alex.amount * discountsOn;
-    return function () {
-      let result =
-        regionsGreece.persons.alex.amount *
-        (1 - Number(regionsGreece.persons.alex.personal) / 100);
-      console.log(result);
-      let resultRegianal =
-        regionsGreece.persons.alex.amount *
-        (1 - Number(regionsGreece.discounts) / 100);
-      let resultFull =
-        regionsGreece.persons.alex.amount *
-        (1 - Number(regionsGreece.discounts) / 100) *
-        (1 - Number(regionsGreece.persons.alex.personal) / 100);
-      console.log(resultFull);
-      let resultFullMax =
-        regionsGreece.persons.alex.amount *
-        (1 - Number(regionsGreece.discounts) / 100) *
-        (1 - Number(regionsHungary.persons.alex.personal) / 100) *
-        discountsOn;
-
-      return function () {
-        result = `Полная стоисость: ${
-          regionsGreece.persons.alex.amount
-        }${"<br>"} 
-        Региональная скидка: ${regionsGreece.discounts} % -  ,
-        стоимость с учетом региональной скидки: ${resultRegianal},${"<br>"} 
-        Cкидка  персоанальная: ${regionsGreece.persons.alex.personal} 
-        стоимость с учетом персональной скидки: ${result}${"<br>"} 
-        С учетом Всех скидок (кроме количественной):  ${resultFull}${"<br>"} 
-        Cтоимость с учетом количественной скидки:${discountsOnValue}${"<br>"} 
-        Итоговая стоисмость:  ${resultFullMax}${"<br>"} 
-      `;
-        console.log(result);
-        return result;
-      };
-    };
-  },
-
-
-  svetaGreece: function () {
-    let discountsOn;
-    if (
-      regionsGreece.persons.sveta.amount > 15000 &&
-      regionsGreece.persons.sveta.amount < 30000
-    ) {
-      discountsOn = 0.9;
-    } else if (
-      regionsGreece.persons.sveta.amount > 30000 &&
-      regionsGreece.persons.sveta.amount < 50000
-    ) {
-      discountsOn = 0.85;
-    } else if (regionsGreece.persons.sveta.amount > 50000) {
-      discountsOn = 0.81;
-    }
-
-    if(discountsOn === Number){
-    let discountsOnValue =
-      regionsGreece.persons.sveta.amount * discountsOn;
-    }else{
-      discountsOnValue = "нету скідкі ";
-    }
-    return function () {
-      let result =
-        regionsGreece.persons.sveta.amount *
-        (1 - Number(regionsGreece.persons.sveta.personal) / 100);
-      console.log(result);
-      let resultRegianal =
-        regionsGreece.persons.sveta.amount *
-        (1 - Number(regionsGreece.discounts) / 100);
-      let resultFull =
-        regionsGreece.persons.sveta.amount *
-        (1 - Number(regionsGreece.discounts) / 100) *
-        (1 - Number(regionsGreece.persons.alex.personal) / 100);
-      console.log(resultFull);
-      let resultFullMax =
-        regionsGreece.persons.sveta.amount *
-        (1 - Number(regionsGreece.discounts) / 100) *
-        (1 - Number(regionsHungary.persons.sveta.personal) / 100) *
-        discountsOn;
-        if(resultFullMax != Number){
-          resultFullMax = resultFull;
-        } 
-
-      return function () {
-        result = `Полная стоисость: ${
-          regionsGreece.persons.sveta.amount
-        }${"<br>"} 
-        Региональная скидка: ${regionsGreece.discounts} % -  ,
-        стоимость с учетом региональной скидки: ${resultRegianal},${"<br>"} 
-        Cкидка  персоанальная: ${regionsGreece.persons.sveta.personal} 
-        стоимость с учетом персональной скидки: ${result}${"<br>"} 
-        С учетом Всех скидок (кроме количественной):  ${resultFull}${"<br>"} 
-        Cтоимость с учетом количественной скидки:${discountsOnValue}${"<br>"} 
-        Итоговая стоисмость:  ${resultFullMax}${"<br>"} 
-      `;
-        console.log(result);
-        return result;
-      };
-    };
-  },
-
-
-
-  vasyaHungary: function () {
-    let discountsOn;
-    if (
-      regionsHungary.persons.vasya.amount > 15000 &&
-      regionsHungary.persons.vasya.amount < 30000
-    ) {
-      discountsOn = 0.9;
-    } else if (
-      regionsHungary.persons.vasya.amount > 30000 &&
-      regionsHungary.persons.vasya.amount < 50000
-    ) {
-      discountsOn = 0.85;
-    } else if (regionsHungary.persons.vasya.amount > 50000) {
-      discountsOn = 0.81;
-    }
-    let discountsOnValue =
-      regionsHungary.persons.vasya.amount * discountsOn;
-    return function () {
-      let result =
-        regionsHungary.persons.vasya.amount *
-        (1 - Number(regionsHungary.persons.vasya.personal) / 100);
-      console.log(result);
-      let resultRegianal =
-        regionsHungary.persons.vasya.amount *
-        (1 - Number(regionsHungary.discounts) / 100);
-      let resultFull =
-        regionsHungary.persons.vasya.amount *
-        (1 - Number(regionsHungary.discounts) / 100) *
-        (1 - Number(regionsHungary.persons.vasya.personal) / 100);
-      console.log(resultFull);
-      let resultFullMax =
-        regionsHungary.persons.vasya.amount *
-        (1 - Number(regionsHungary.discounts) / 100) *
-        (1 - Number(regionsHungary.persons.vasya.personal) / 100) *
-        discountsOn;
-
-      return function () {
-        result = `Полная стоисость: ${
-          regionsHungary.persons.vasya.amount
-        }${"<br>"} 
-        Региональная скидка: ${regionsHungary.discounts} % -  ,
-        стоимость с учетом региональной скидки: ${resultRegianal},${"<br>"} 
-        Cкидка  персоанальная: ${regionsHungary.persons.vasya.personal} 
-        стоимость с учетом персональной скидки: ${result}${"<br>"} 
-        С учетом Всех скидок (кроме количественной):  ${resultFull}${"<br>"} 
-        Cтоимость с учетом количественной скидки:${discountsOnValue}${"<br>"} 
-        Итоговая стоисмость:  ${resultFullMax}${"<br>"} 
-      `;
-        console.log(result);
-        return result;
-      };
-    };
-  },
-  alexHungary: function () {
-    let discountsOn;
-    if (
-      regionsHungary.persons.alex.amount > 15000 &&
-      regionsHungary.persons.alex.amount < 30000
-    ) {
-      discountsOn = 0.9;
-    } else if (
-      regionsHungary.persons.alex.amount > 30000 &&
-      regionsHungary.persons.alex.amount < 50000
-    ) {
-      discountsOn = 0.85;
-    } else if (regionsHungary.persons.alex.amount > 50000) {
-      discountsOn = 0.81;
-    }
-
-
-    if(discountsOn === Number){
-    let discountsOnValue =
-    regionsHungary.persons.alex.amount * discountsOn;
-    }else{
-      discountsOnValue = "нету скідкі ";
-    }
-
-    
-
-    return function () {
-      let result =
-        regionsHungary.persons.alex.amount *
-        (1 - Number(regionsHungary.persons.alex.personal) / 100);
-      console.log(result);
-      let resultRegianal =
-        regionsHungary.persons.alex.amount *
-        (1 - Number(regionsHungary.discounts) / 100);
-      let resultFull =
-        regionsHungary.persons.alex.amount *
-        (1 - Number(regionsHungary.discounts) / 100) *
-        (1 - Number(regionsHungary.persons.alex.personal) / 100);
-      console.log(resultFull);
-      let resultFullMax =
-        regionsHungary.persons.alex.amount *
-        (1 - Number(regionsHungary.discounts) / 100) *
-        (1 - Number(regionsHungary.persons.alex.personal) / 100) *
-        discountsOn;
-
-        if(resultFullMax != Number){
-          resultFullMax = resultFull;
-        } 
-
-      return function () {
-        result = `Полная стоисость: ${
-          regionsHungary.persons.alex.amount
-        }${"<br>"} 
-        Региональная скидка: ${regionsHungary.discounts} % -  ,
-        стоимость с учетом региональной скидки: ${resultRegianal},${"<br>"} 
-        Cкидка  персоанальная: ${regionsHungary.persons.alex.personal} 
-        стоимость с учетом персональной скидки: ${result}${"<br>"} 
-        С учетом Всех скидок (кроме количественной):  ${resultFull}${"<br>"} 
-        Cтоимость с учетом количественной скидки:${discountsOnValue}${"<br>"} 
-        Итоговая стоисмость:  ${resultFullMax}${"<br>"} 
-      `;
-        console.log(result);
-        return result;
-      };
-    };
-  },
-  svetaHungary: function () {
-    let discountsOn;
-    if (
-      regionsHungary.persons.sveta.amount > 15000 &&
-      regionsHungary.persons.sveta.amount < 30000
-    ) {
-      discountsOn = 0.9;
-    } else if (
-      regionsHungary.persons.sveta.amount > 30000 &&
-      regionsHungary.persons.sveta.amount < 50000
-    ) {
-      discountsOn = 0.85;
-    } else if (regionsHungary.persons.sveta.amount > 50000) {
-      discountsOn = 0.81;
-    }
-    let discountsOnValue =
-      regionsHungary.persons.sveta.amount * discountsOn;
-    return function () {
-      let result =
-        regionsHungary.persons.sveta.amount *
-        (1 - Number(regionsHungary.persons.sveta.personal) / 100);
-      console.log(result);
-      let resultRegianal =
-        regionsHungary.persons.sveta.amount *
-        (1 - Number(regionsHungary.discounts) / 100);
-      let resultFull =
-        regionsHungary.persons.sveta.amount *
-        (1 - Number(regionsHungary.discounts) / 100) *
-        (1 - Number(regionsHungary.persons.sveta.personal) / 100);
-      console.log(resultFull);
-      let resultFullMax =
-        regionsHungary.persons.sveta.amount *
-        (1 - Number(regionsHungary.discounts) / 100) *
-        (1 - Number(regionsHungary.persons.sveta.personal) / 100) *
-        discountsOn;
-
-      return function () {
-        result = `Полная стоисость: ${
-          regionsHungary.persons.sveta.amount
-        }${"<br>"} 
-        Региональная скидка: ${regionsHungary.discounts} % -  ,
-        стоимость с учетом региональной скидки: ${resultRegianal},${"<br>"} 
-        Cкидка  персоанальная: ${regionsHungary.persons.sveta.personal} 
-        стоимость с учетом персональной скидки: ${result}${"<br>"} 
-        С учетом Всех скидок (кроме количественной):  ${resultFull}${"<br>"} 
-        Cтоимость с учетом количественной скидки:${discountsOnValue}${"<br>"} 
-        Итоговая стоисмость:  ${resultFullMax}${"<br>"} 
-      `;
-        console.log(result);
-        return result;
-      };
-    };
-  },
-  
 };
 
-let contry = prompt(`Доступные регионы:
-"Poland"
-"Greece" 
-"Hungary" 
-${price['greece']}
-Введите страну: `, `Poland`);
+let contry = prompt(
+  `Доступные регионы:
+    "Poland"
+    "Greece" 
+    "Hungary" 
+    ${price["greece"]}
+    Введите страну: `,
+  `Poland`
+);
 let regionsPersons;
+//contry= 'Poland';
+if (contry === "Poland" || contry === "Greece" || contry === "Hungary") {
+  if (contry === "Poland") {
+    regionsPersons = prompt(
+      `
+    База клиентов:
+    vasya
+    alex
+    Введите имя клиента`,
+      `vasya`
+    );
 
-if(contry === "Poland" || contry === "Greece" || contry === "Hungary"){
+    switch (regionsPersons) {
+      case (regionsPersons = "vasya"):
+        regions.discounts = regionsPoland.discounts;
+        valuePersons = vasyaPoland;
+        console.log(valuePersons);
+        regionsPersons = calculator.result.call(regions.discounts)(
+          valuePersons
+        )(resultDntsiscouOn);
+        break;
+      case (regionsPersons = "alex"):
+        regions.discounts = regionsPoland.discounts;
+        valuePersons = alexPoland;
+        console.log(valuePersons, "здесь");
+        regionsPersons = calculator.result.call(regions.discounts)(
+          valuePersons
+        )(resultDntsiscouOn);
+        break;
 
-if (contry === "Poland") {
-  regionsPersons = prompt(`
-База клиентов:
-vasya
-alex
-Введите имя клиента`, `vasya`);
-
-  switch (regionsPersons) {
-    case (regionsPersons = "vasya"):
-      regionsPersons = calculator.vasya.call(regionsPoland.discounts)(
-        regionsPoland.persons
-      )(resultDntsiscouOn);
-      break;
-    case (regionsPersons = "alex"):
-      regionsPersons = calculator.alex.call(regionsPoland.discounts)(
-        regionsPoland.persons
-      )(resultDntsiscouOn);
-      break;
-
-    default:
-      alert("Такого туриста нет!");
-  }
-} else if(contry === "Greece"){
-  regionsPersons = prompt(`
-  База клиентов:
-  vasya
-  sveta
-  Введите имя клиента`, `vasya`);
-  switch (regionsPersons) {
-    case (regionsPersons = "alex"):
-      regionsPersons = calculator.alexGreece.call(
-        regionsGreece.discounts
-      )(regionsGreece.persons)(resultDntsiscouOn);
-      break;
-    case (regionsPersons = "sveta"):
-      regionsPersons = calculator.svetaGreece.call(
-        regionsGreece.discounts
-      )(regionsGreece.persons)(resultDntsiscouOn);
-
-      break;
-    default:
-      alert("Такого туриста нет!");
-  }
-}
-else if (contry === "Hungary") {
-  regionsPersons = prompt(`
-  База клиентов:
-  vasya
-  alex
-  sveta
-  Введите имя клиента`, `vasya`);
-  switch (regionsPersons) {
-    case (regionsPersons = "vasya"):
-      regionsPersons = calculator.vasyaHungary.call(
-        regionsHungary.discounts
-      )(regionsHungary.persons)(resultDntsiscouOn);
-      break;
-    case (regionsPersons = "alex"):
-      regionsPersons = calculator.alexHungary.call(
-        regionsHungary.discounts
-      )(regionsHungary.persons)(resultDntsiscouOn);
-      break;
+      default:
+        alert("Такого туриста нет!");
+    }
+  } else if (contry === "Greece") {
+    regionsPersons = prompt(
+      `
+      База клиентов:
+      alex
+      sveta
+      Введите имя клиента`,
+      `vasya`
+    );
+    switch (regionsPersons) {
+      case (regionsPersons = "alex"):
+        regions.discounts = regionsGreece.discounts;
+        valuePersons = alexGreece;
+        regionsPersons = calculator.result.call(regions.discounts)(
+          valuePersons
+        )(resultDntsiscouOn);
+        break;
       case (regionsPersons = "sveta"):
-      regionsPersons = calculator.svetaHungary.call(
-        regionsHungary.discounts
-      )(regionsHungary.persons)(resultDntsiscouOn);
-      break;
-    default:
-      alert("Такого клиента нет!");
-  }
-}
-}else{
-alert("Такой страны нет!");
-  
-}
+        regions.discounts = regionsGreece.discounts;
+        valuePersons = svetaGreece;
+        regionsPersons = calculator.result.call(regions.discounts)(
+          valuePersons
+        )(resultDntsiscouOn);
 
+        break;
+      default:
+        alert("Такого туриста нет!");
+    }
+  } else if (contry === "Hungary") {
+    regionsPersons = prompt(
+      `
+      База клиентов:
+      vasya
+      alex
+      sveta
+      Введите имя клиента`,
+      `vasya`
+    );
+    switch (regionsPersons) {
+      case (regionsPersons = "vasya"):
+        regions.discounts = regionsHungary.discounts;
+        valuePersons = vasyaHungary;
+        regionsPersons = calculator.result.call(regions.discounts)(
+          valuePersons
+        )(resultDntsiscouOn);
+        break;
+      case (regionsPersons = "alex"):
+        regions.discounts = regionsHungary.discounts;
+        valuePersons = svetaHungary;
+        regionsPersons = calculator.result.call(regions.discounts)(
+          regions.discounts
+        )(resultDntsiscouOn);
+        break;
+      case (regionsPersons = "sveta"):
+        regions.discounts = regionsHungary.discounts;
+        valuePersons = alexHungary;
+        regionsPersons = calculator.result.call(regions.discounts)(
+          regions.discounts
+        )(resultDntsiscouOn);
+        break;
+      default:
+        alert("Такого клиента нет!");
+    }
+  }
+} else {
+  alert("Такой страны нет!");
+}
 document.write(regionsPersons, "<br>");
